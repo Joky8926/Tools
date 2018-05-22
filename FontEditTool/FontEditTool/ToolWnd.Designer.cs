@@ -50,6 +50,8 @@
 			this.btnCancel = new System.Windows.Forms.Button();
 			this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
 			this.labelSave = new System.Windows.Forms.Label();
+			this.btnColor = new System.Windows.Forms.Button();
+			this.colorDialog = new System.Windows.Forms.ColorDialog();
 			this.groupBox1.SuspendLayout();
 			this.flowLayoutPanel2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.textAmount)).BeginInit();
@@ -320,7 +322,7 @@
 			this.flowLayoutPanel3.AutoSize = true;
 			this.flowLayoutPanel3.Controls.Add(this.btnSave);
 			this.flowLayoutPanel3.Controls.Add(this.btnCancel);
-			this.flowLayoutPanel3.Location = new System.Drawing.Point(86, 283);
+			this.flowLayoutPanel3.Location = new System.Drawing.Point(86, 312);
 			this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
 			this.flowLayoutPanel3.Name = "flowLayoutPanel3";
 			this.flowLayoutPanel3.Size = new System.Drawing.Size(162, 29);
@@ -352,12 +354,13 @@
 			this.flowLayoutPanel4.Controls.Add(this.tableLayoutPanel2);
 			this.flowLayoutPanel4.Controls.Add(this.groupBox1);
 			this.flowLayoutPanel4.Controls.Add(this.flowLayoutPanel1);
+			this.flowLayoutPanel4.Controls.Add(this.btnColor);
 			this.flowLayoutPanel4.Controls.Add(this.flowLayoutPanel3);
 			this.flowLayoutPanel4.Controls.Add(this.labelSave);
 			this.flowLayoutPanel4.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
 			this.flowLayoutPanel4.Location = new System.Drawing.Point(12, 12);
 			this.flowLayoutPanel4.Name = "flowLayoutPanel4";
-			this.flowLayoutPanel4.Size = new System.Drawing.Size(334, 342);
+			this.flowLayoutPanel4.Size = new System.Drawing.Size(334, 371);
 			this.flowLayoutPanel4.TabIndex = 10;
 			// 
 			// labelSave
@@ -365,7 +368,7 @@
 			this.labelSave.Anchor = System.Windows.Forms.AnchorStyles.None;
 			this.labelSave.AutoSize = true;
 			this.labelSave.ForeColor = System.Drawing.Color.ForestGreen;
-			this.labelSave.Location = new System.Drawing.Point(134, 320);
+			this.labelSave.Location = new System.Drawing.Point(134, 349);
 			this.labelSave.Margin = new System.Windows.Forms.Padding(3, 5, 3, 10);
 			this.labelSave.Name = "labelSave";
 			this.labelSave.Size = new System.Drawing.Size(65, 12);
@@ -373,11 +376,26 @@
 			this.labelSave.Text = "保存成功！";
 			this.labelSave.Visible = false;
 			// 
+			// btnColor
+			// 
+			this.btnColor.Anchor = System.Windows.Forms.AnchorStyles.Top;
+			this.btnColor.Location = new System.Drawing.Point(129, 276);
+			this.btnColor.Name = "btnColor";
+			this.btnColor.Size = new System.Drawing.Size(75, 23);
+			this.btnColor.TabIndex = 11;
+			this.btnColor.Text = "设置背景色";
+			this.btnColor.UseVisualStyleBackColor = true;
+			this.btnColor.Click += new System.EventHandler(this.btnColor_Click);
+			// 
+			// colorDialog
+			// 
+			this.colorDialog.Color = System.Drawing.Color.Transparent;
+			// 
 			// ToolWnd
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(684, 362);
+			this.ClientSize = new System.Drawing.Size(684, 392);
 			this.Controls.Add(this.flowLayoutPanel4);
 			this.Controls.Add(this.pictureBox);
 			this.KeyPreview = true;
@@ -435,6 +453,8 @@
 		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel4;
 		private System.Windows.Forms.Label labelKerningErr;
 		private System.Windows.Forms.Label labelSave;
+		private System.Windows.Forms.Button btnColor;
+		private System.Windows.Forms.ColorDialog colorDialog;
 	}
 }
 

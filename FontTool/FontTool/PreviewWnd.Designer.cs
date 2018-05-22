@@ -34,6 +34,8 @@
 			this.textCharPairs = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
 			this.textAmount = new System.Windows.Forms.NumericUpDown();
+			this.colorDialog = new System.Windows.Forms.ColorDialog();
+			this.btnColor = new System.Windows.Forms.Button();
 			this.flowLayoutPanel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
 			this.groupBox1.SuspendLayout();
@@ -72,7 +74,7 @@
 			// 
 			// pictureBox
 			// 
-			this.pictureBox.Location = new System.Drawing.Point(12, 170);
+			this.pictureBox.Location = new System.Drawing.Point(12, 196);
 			this.pictureBox.Name = "pictureBox";
 			this.pictureBox.Size = new System.Drawing.Size(1280, 640);
 			this.pictureBox.TabIndex = 3;
@@ -159,11 +161,26 @@
 			this.textAmount.TabIndex = 3;
 			this.textAmount.ValueChanged += new System.EventHandler(this.textAmount_ValueChanged);
 			// 
+			// colorDialog
+			// 
+			this.colorDialog.Color = System.Drawing.Color.Transparent;
+			// 
+			// btnColor
+			// 
+			this.btnColor.Location = new System.Drawing.Point(12, 167);
+			this.btnColor.Name = "btnColor";
+			this.btnColor.Size = new System.Drawing.Size(75, 23);
+			this.btnColor.TabIndex = 5;
+			this.btnColor.Text = "设置背景色";
+			this.btnColor.UseVisualStyleBackColor = true;
+			this.btnColor.Click += new System.EventHandler(this.btnColor_Click);
+			// 
 			// PreviewWnd
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(352, 374);
+			this.ClientSize = new System.Drawing.Size(344, 392);
+			this.Controls.Add(this.btnColor);
 			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.pictureBox);
 			this.Controls.Add(this.flowLayoutPanel1);
@@ -196,5 +213,7 @@
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.NumericUpDown textAmount;
 		private System.Windows.Forms.Label labelKerningErr;
+		private System.Windows.Forms.ColorDialog colorDialog;
+		private System.Windows.Forms.Button btnColor;
 	}
 }

@@ -9,6 +9,7 @@ namespace FontEditTool {
 		private FontGen fontGen;
 		private Bitmap image;
 		private Graphics graphics;
+		private Color clearColor = Color.Empty;
 
 		public ToolWnd(string fileName = "") {
 			fntFileName = fileName;
@@ -71,6 +72,13 @@ namespace FontEditTool {
 			DrawText();
 		}
 
+		private void btnColor_Click(object sender, EventArgs e) {
+			if (colorDialog.ShowDialog() == DialogResult.OK) {
+				clearColor = colorDialog.Color;
+				DrawText();
+			}
+		}
+
 		private void btnSave_Click(object sender, EventArgs e) {
 			if (fontGen == null) {
 				return;
@@ -92,7 +100,7 @@ namespace FontEditTool {
 			labelSave.Visible = false;
 			FontChar charImg;
 			FontChar lastChar = null;
-			graphics.Clear(Color.Empty);
+			graphics.Clear(clearColor);
 			int currX = 0;
 			int currY = 0;
 			foreach (char code in richText.Text) {

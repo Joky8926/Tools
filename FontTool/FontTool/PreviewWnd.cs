@@ -9,6 +9,7 @@ namespace FontTool {
 		private FontGen fontGen;
 		private Bitmap image;
 		private Graphics graphics;
+		private Color clearColor = Color.Empty;
 
 		public PreviewWnd(ToolWnd wnd, FontGen obj) {
 			mainWnd = wnd;
@@ -47,10 +48,17 @@ namespace FontTool {
 			DrawText();
 		}
 
+		private void btnColor_Click(object sender, EventArgs e) {
+			if (colorDialog.ShowDialog() == DialogResult.OK) {
+				clearColor = colorDialog.Color;
+				DrawText();
+			}
+		}
+
 		public void DrawText() {
 			FontChar charImg;
 			FontChar lastChar = null;
-			graphics.Clear(Color.Empty);
+			graphics.Clear(clearColor);
 			int currX = 0;
 			int currY = 0;
 			foreach (char code in richText.Text) {
