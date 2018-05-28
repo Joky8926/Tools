@@ -1,0 +1,14 @@
+#!/bin/sh
+arr=$(git status -s | while read line
+do
+    mode=${line:0:3}
+    if [[ ($mode == "A  " || $mode == "M  ") && ${line:0-4} == ".lua" ]]
+    then
+        echo "${line:2}"
+    fi
+done)
+for s in ${arr[@]} 
+do
+    echo $s
+    luac $s
+done
