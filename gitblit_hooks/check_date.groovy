@@ -1,38 +1,33 @@
 import com.gitblit.utils.JGitUtils
 import org.eclipse.jgit.lib.Repository
 import org.eclipse.jgit.transport.ReceiveCommand
+import org.eclipse.jgit.transport.ReceiveCommand.Result
 
-logger.info("theme_res_update hook triggered by ${user.username} for ${repository.name}")
+logger.info("check_date hook triggered by ${user.username} for ${repository.name}")
 
 Repository r = gitblit.getRepository(repository.name)
 
-def themeList = []
+def blocked = false
 
 for (ReceiveCommand command in commands) {
     String refName = command.refName
     if (refName != 'refs/heads/master') {
         continue
     }
-    def files = JGitUtils.getFilesInRange(r, command.oldId.name, command.newId.name)
-    files.each{
-        // logger.info("update file: ${it.path}##${it.name}##${it.changeType}")
-        def matcher = it.path =~ "^res_cdn/theme_resource/theme(\\d+)"
-        if (matcher.count > 0) {
-            String themeId = matcher[0][1]
-            if (!themeList.contains(themeId)) {
-                themeList.add(themeId)
-            }
-        }
+    logger.info("update file check date: ##${command.oldId.name}##${command.newId.name}")
+    def commits = JGitUtils.getRevLog(r, command.oldId.name, command.newId.name)
+    def serverTime = (new Date().time / 1000).intValue()
+    def commintTime = commits[0].id.getCommitTime()
+    logger.info("commitTime : ${commintTime} nowTime: ${serverTime}")
+    if (commintTime > serverTime + 3600) {
+        command.setResult(Result.REJECTED_OTHER_REASON, "你的本机时间大于服务器时间！")
+        blocked = true
+        break
     }
 }
 r.close()
 
-if (themeList.size() > 0) {
-    logger.info("theme_res_update themeList: ${themeList}")
-    String triggerUrl = "http://192.168.1.201:8080/job/package_theme_res/buildWithParameters?token=Hummer2018&theme_ids=" + themeList.join("%20")
-    try {
-        new URL(triggerUrl).getContent()
-    } catch (Exception ex) {
-        // logger.info("Catching the exception")
-    }
+if (blocked) {
+    logger.info("break push")
+    return false
 }
